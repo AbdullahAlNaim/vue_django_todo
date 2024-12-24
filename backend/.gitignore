@@ -1,0 +1,14 @@
+# Python bytecode files
+core/core/__pycache__/
+
+core/todo/__pycache__/
+
+# Local database file
+core/db.sqlite3
+
+# Sensitive settings file
+core/core/settings.py
+
+venv
+
+.env
