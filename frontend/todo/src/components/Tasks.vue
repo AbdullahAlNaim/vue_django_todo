@@ -19,13 +19,19 @@ export default {
         handleNewTask(newTask) {
             this.tasks.push(newTask);
         },
-        removeTask(removedTask) {
-            this.tasks.pop(removedTask)
+        removeTask() {
+            console.log('success', task.id)
+            // this.tasks.pop(removedTask)
+
+        },
+        sendId(id) {
+            this.emit$('taskIdentifier', id)
         }
     },
     mounted () {
         this.retrieve();
-    }
+    },
+    emit: ['taskIdentifier']
 }
 </script>
 
@@ -40,7 +46,7 @@ export default {
                 Task: {{ task.task_name }}
                 <br>
                 Description: {{ task.description }}
-                <delete-task @deletingTask(task.id)="removeTask"/>
+                <delete-task :taskId="task.id" @deletingTask="removeTask"/>
                 <hr>
             </li>
         </div>
