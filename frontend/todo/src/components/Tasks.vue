@@ -19,13 +19,20 @@ export default {
         handleNewTask(newTask) {
             this.tasks.push(newTask);
         },
-        removeTask() {
-            console.log('success', task.id)
-            // this.tasks.pop(removedTask)
+        removeTask(removingTask) {
+            // bad performance for larger arrays 
+            // this.tasks = this.tasks.filter(task => task.id !== removingTask.id)
 
-        },
-        sendId(id) {
-            this.emit$('taskIdentifier', id)
+            // better for performance
+            const index = this.tasks.findIndex(task => task.id === removingTask.id);
+            if (index > -1) {
+                const newTaskList = [...this.tasks];
+                newTaskList.splice(index, 1);
+                this.tasks = newTaskList;
+            } else {
+                console.warn('Task ID ', removingTask.id, ' not found');
+            }
+            
         }
     },
     mounted () {

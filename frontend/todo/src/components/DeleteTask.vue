@@ -1,8 +1,32 @@
 <script>
 export default {
     methods: {
+        async getTask() {
+            try {
+                const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
+                    }
+                })
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`)
+                }
+
+                const removingTask = await response.json();
+                this.$emit('deletingTask', removingTask)
+                console.log('deleted', removingTask)
+
+            } catch (error) {
+                console.error('found and error: ', error);   
+            }
+        },
         async deleteTask() {
-            console.log(this.taskId)
+            
+            this.getTask();
+
             try {
                     const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
                     method: 'DELETE',
@@ -10,18 +34,11 @@ export default {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
                     }
-
                 })
 
-                console.log('deleted', this.taskId)
-
-                if(!response.ok) {
+                if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`)
                 }
-                
-                // const removedTask = await response.json()
-                // console.log(removedTask)
-                // this.$emit('deletingTask', removedTask)
 
             }
             catch (error){

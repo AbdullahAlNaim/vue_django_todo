@@ -28,6 +28,7 @@ export default {
                 const newTask = await response.json()
 
                 this.$emit('newTaskCreated', newTask)
+                
                 this.formData.task_name = ''
                 this.formData.description = ''
 
