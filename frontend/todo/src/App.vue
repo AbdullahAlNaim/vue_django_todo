@@ -1,11 +1,12 @@
 <script>
 export default {
-  
+
 }
 </script>
 
 <template>
-  <tasks />
+  <Navbar />
+  <router-view></router-view>
 </template>
 
 <style scoped>

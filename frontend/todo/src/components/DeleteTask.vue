@@ -20,7 +20,7 @@ export default {
                 console.log('deleted', removingTask)
 
             } catch (error) {
-                console.error('found and error: ', error);   
+                console.error('found an error: ', error);   
             }
         },
         async deleteTask() {
@@ -28,13 +28,13 @@ export default {
             this.getTask();
 
             try {
-                    const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
-                    }
-                })
+                const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
+                }
+            })
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`)
@@ -42,12 +42,9 @@ export default {
 
             }
             catch (error){
-                console.error('found and error: ', error)
+                console.error('found an error: ', error)
             }
         },
-        speak() {
-            console.log(this.taskId);
-        }
     },
     emits: ['deletingTask'],
     props: {
@@ -57,5 +54,6 @@ export default {
 </script>
 
 <template>
-    <button @click="deleteTask">Delete</button>
+    <button @click="deleteTask">DELETE</button>
 </template>
+

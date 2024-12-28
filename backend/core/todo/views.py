@@ -11,3 +11,8 @@ class TodoList(generics.ListCreateAPIView):
 class CurrentTask(generics.RetrieveDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+class UpdateTask(generics.UpdateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    http_method_names = ['put']

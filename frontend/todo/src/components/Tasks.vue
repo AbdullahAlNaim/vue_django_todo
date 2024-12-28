@@ -38,7 +38,6 @@ export default {
     mounted () {
         this.retrieve();
     },
-    emit: ['taskIdentifier']
 }
 </script>
 
@@ -49,14 +48,26 @@ export default {
     <hr>
     <ul>
         <div v-for="task in tasks">
-            <li v-if="!task.completed">
+            <li class="single-task" 
+                v-if="!task.completed">
                 Task: {{ task.task_name }}
                 <br>
                 Description: {{ task.description }}
+                <complete-task :taskId="task.id" />
                 <delete-task :taskId="task.id" @deletingTask="removeTask"/>
                 <hr>
             </li>
         </div>
     </ul>
 </template>
+
+<style scoped>
+.single-task:hover {
+    background-color: aliceblue;
+}
+
+li {
+    list-style-type: none;
+}
+</style>
 
