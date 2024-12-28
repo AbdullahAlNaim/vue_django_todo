@@ -1,1 +1,1 @@
-todo app built using vue js fronend and django for backend
+todo app built using vue js frontend and django for backend
