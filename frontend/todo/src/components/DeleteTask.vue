@@ -3,7 +3,7 @@ export default {
     methods: {
         async getTask() {
             try {
-                const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
+                const response = await fetch(`http://localhost:8000/tasks/${this.taskId}/`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default {
             this.getTask();
 
             try {
-                const response = await fetch(`http://localhost:8000/task/${this.taskId}/`, {
+                const response = await fetch(`http://localhost:8000/tasks/${this.taskId}/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

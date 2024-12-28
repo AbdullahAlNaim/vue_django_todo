@@ -12,7 +12,7 @@ export default {
     methods: {
         async submitForm () {
             try {
-                const response = await fetch('http://localhost:8000', {
+                const response = await fetch('http://localhost:8000/tasks/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

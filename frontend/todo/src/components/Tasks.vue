@@ -8,7 +8,7 @@ export default {
     methods: {
         async retrieve () {
             try {
-                const response = await fetch('http://localhost:8000/')
+                const response = await fetch('http://localhost:8000/tasks/')
                 const data = await response.json()
                 this.tasks = data
             } catch (error) {
@@ -41,7 +41,6 @@ export default {
 }
 </script>
 
-
 <template>
     <h1>Tasks</h1>
     <create-task @newTaskCreated="handleNewTask"/>
@@ -53,7 +52,13 @@ export default {
                 Task: {{ task.task_name }}
                 <br>
                 Description: {{ task.description }}
-                <complete-task :taskId="task.id" />
+
+                <complete-task 
+                :taskId="task.id"
+                :taskName="task.task_name"
+                :description="task.description" 
+                @updatingTask="retrieve"/>
+
                 <delete-task :taskId="task.id" @deletingTask="removeTask"/>
                 <hr>
             </li>
