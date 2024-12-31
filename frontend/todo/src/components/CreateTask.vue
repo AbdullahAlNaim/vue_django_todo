@@ -42,14 +42,22 @@ export default {
 </script>
 
 <template>
-    <form @submit.prevent="submitForm">
-        <input type="text" 
-        v-model="formData.task_name" 
-        placeholder="task name">
+    <div class="create-task">
+        <form @submit.prevent="submitForm">
+            <input type="text" 
+            v-model="formData.task_name" 
+            placeholder="task name">
 
-        <input type="text"
-        v-model="formData.description"
-        placeholder="description">
-        <button type="submit">Add</button>
-    </form>
+            <input type="text"
+            v-model="formData.description"
+            placeholder="description">
+            <button type="submit">Add</button>
+        </form>
+    </div>
 </template>
+
+<style scoped>
+.create-task {
+    text-align: center;
+}
+</style>

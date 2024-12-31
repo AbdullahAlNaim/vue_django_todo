@@ -1,5 +1,5 @@
-from .models import Task
-from .serializers import TaskSerializer
+from .models import Task, User
+from .serializers import TaskSerializer, UserSerializer
 from rest_framework import viewsets
 
 
@@ -9,7 +9,16 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 # No longer need these approaches. Left as notes
 

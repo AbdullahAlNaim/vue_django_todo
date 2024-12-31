@@ -42,9 +42,11 @@ export default {
 </script>
 
 <template>
-    <h1>Tasks</h1>
+    <hr>
+    <h1>Create Task</h1>
     <create-task @newTaskCreated="handleNewTask"/>
     <hr>
+    <h1>Current Tasks</h1>
     <ul>
         <div v-for="task in tasks">
             <li class="single-task" 
@@ -64,9 +66,29 @@ export default {
             </li>
         </div>
     </ul>
+    <hr>
+    <h1>Completed Tasks</h1>
+    <hr>
+    <ul>
+        <div v-for="task in tasks">
+            <li class="single-task" 
+                v-if="task.completed">
+                Task: {{ task.task_name }}
+                <br>
+                Description: {{ task.description }} 
+                <br>
+                Completed on: {{ task.updated_at }}
+                <hr>
+            </li>
+        </div>
+    </ul>
 </template>
 
 <style scoped>
+h1, h2 {
+    text-align: center;
+}
+
 .single-task:hover {
     background-color: aliceblue;
 }
