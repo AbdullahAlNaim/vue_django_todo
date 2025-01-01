@@ -7,7 +7,7 @@ core/todo/__pycache__/
 core/db.sqlite3
 
 # Sensitive settings file
-core/core/settings.py
+# core/core/settings.py
 
 venv
 
